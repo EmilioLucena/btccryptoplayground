@@ -3,7 +3,6 @@ package br.com.vipnetware.my1stcryptoapp.network
 import br.com.vipnetware.my1stcryptoapp.model.AddressInfo
 import br.com.vipnetware.my1stcryptoapp.model.BlockInfo
 import br.com.vipnetware.my1stcryptoapp.model.TransactionInfo
-import br.com.vipnetware.my1stcryptoapp.model.User
 import retrofit2.http.GET
 import retrofit2.http.Path
 
@@ -22,7 +21,4 @@ interface BitcoinApiService {
 
     @GET("rawaddr/{address}")
     suspend fun getAddressInfo(@Path("address") address: String): AddressInfo
-
-    @GET("users")
-    suspend fun getUsers(): List<User>
 }

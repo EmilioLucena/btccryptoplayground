@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import br.com.vipnetware.my1stcryptoapp.model.AddressInfo
 import br.com.vipnetware.my1stcryptoapp.model.BlockInfo
 import br.com.vipnetware.my1stcryptoapp.model.TransactionInfo
-import br.com.vipnetware.my1stcryptoapp.model.User
 import br.com.vipnetware.my1stcryptoapp.repository.BTCRepository
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
@@ -32,7 +31,6 @@ class MainScreenViewModel : ViewModel() {
     val txInfo: LiveData<TransactionInfo>
         get() = _txInfo
 
-    val users = MutableLiveData<List<User>>()
     val error = MutableLiveData<String>()
 
     fun getLastBlock() {
@@ -75,17 +73,6 @@ class MainScreenViewModel : ViewModel() {
             try {
                 val response = repository.getAddressInfo(addr)
                 _addressInfo.postValue(response)
-            } catch (e: Exception) {
-                error.postValue(e.message)
-            }
-        }
-    }
-
-    fun fetchUsers() {
-        viewModelScope.launch {
-            try {
-                val response = repository.getUsers()
-                users.postValue(response)
             } catch (e: Exception) {
                 error.postValue(e.message)
             }
